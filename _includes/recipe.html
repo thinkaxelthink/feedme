@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="parallax-enabled">
+    <section class="recipe-hero">
+      <div class="recipe-image-container">
+        <img class="recipe-image" src="{{page.images[0]}}" data-0="-webkit-transform: translateY(0px);" data-420="-webkit-transform: translateY(-120px);">
+      </div>
+      <div class="recipe-image-placeholder"></div>
+      <div class="recipe-info-container">
+        <div class="recipe-info">
+          <div class="recipe-info-inner" data-0="-webkit-transform: translateY(0px); opacity: 1;" data-100="-webkit-transform: translateY(100px); opacity: 0;">
+            <h1 class="recipe-heading">{{page.title}}</h1>
+            <ul class="recipe-heading list-inline">
+              {% if page.serves %}<li>serves: {{ page.serves }}</li>{% endif %}
+              {% if page.calories %}<li>calories: {{ page.calories }}</li>{% endif %}
+              {% if page.time %}<li>cook time: {{ page.time }}</li>{% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="ingredients" class="col-md-3" role="complementary">
+      <h3>Ingredients</h3>
+      <ul class="list-unstyled">
+        {% for item in page.ingredients %}
+        <li class="ingredient">{{item.qty}} {{item.unit}} {{item.ingredient}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="recipe" id="skrollr-body">
+    <div id="preparation" class="col-md-9">
+      <div class="recipe-step-image-container row">
+        <h3>Preparation</h3>
+        {% if page.preparation.image %}
+        <img class="img-responsive center-block" src="{{ page.preparation.image }}">
+        {% endif %}
+        <ul class="list-unstyled">
+          {% for prepitem in page.preparation.body %}
+          <li class="preparation-instructions">{{prepitem}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    {% for step in page.steps %}
+    <div id="step-{{forloop.index}}" class="col-md-9">
+      <div class="recipe-step-image-container row">
+        <h2 class="recipe-step-title">{{step.title}}</h2>
+        {% if step.image %}
+        <img class="img-responsive center-block" src="{{ step.image }}">
+        {% endif %}
+      </div>
+      {% if step.body %}
+      <div class="lead col-md-9">{{ step.body | markdownify }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="recipe-meta col-md-9">
+      {% if page.contributor %}
+      <div class="contributor">
+        <div class="contributor-image">
+          <img class="img-responsive img-circle" src="{{ page.contributor.image }}">
+        </div>
+        <strong class="text-muted">added by {{ page.contributor.name }}</strong>
+        <p class="contributor-caption text-muted col-sm-4 col-lg-8">{{ page.contributor.caption }}</p>
+      </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
