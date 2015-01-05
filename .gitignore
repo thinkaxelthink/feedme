@@ -1,6 +1,6 @@
 bower_components/*
 node_modules/*
-.DS_Store/*
+.DS_Store
 .tmp/*
 dist/*
 index.txt

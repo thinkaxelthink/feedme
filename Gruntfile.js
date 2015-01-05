@@ -6,12 +6,13 @@
 
   module.exports = function(grunt) {
 
-    var jshintrc = grunt.file.readJSON('.jshintrc');
+    var jshintrc = grunt.file.readJSON('.jshintrc'),
+        pkg = grunt.file.readJSON('package.json');
 
     // Project configuration.
     grunt.initConfig({
       // Metadata.
-      pkg: grunt.file.readJSON('package.json'),
+      pkg: pkg,
       banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
@@ -24,32 +25,44 @@
           stripBanners: true,
           dest: "dist"
         },
-        html: ['.tmp/index.html']
+        html: ['_site/*.html']
       },
+
       usemin: {
-        html: ['dist/index.html'],
-        css: ['dist/**/*.css']
+        html: ['_site/*.html'],
+        css: ['_site/css/*.css']
       },
-/*      concat: {
-        options: {
-          banner: '<%= banner %>',
-          stripBanners: true
-        },
+
+      clean: {
+        tmp: '.tmp', 
+        build: ['dist']
+      },
+
+      copy: {
         dist: {
-          src: ['lib/<%= pkg.name %>.js'],
-          dest: 'dist/<%= pkg.name %>.js'
+          files: [{
+            expand: true,
+            cwd: 'dist',
+            dest: '_site',
+            src: [
+              'js/**',
+              'css/**'
+            ]
+          }]
         }
       },
-      uglify: {
+
+      cdn: {
         options: {
-          banner: '<%= banner %>'
+          cdn: '<%= pkg.homepage %>',
+          flatten: true
         },
         dist: {
-          src: '<%= concat.dist.dest %>',
-          dest: 'dist/<%= pkg.name %>.min.js'
+          cwd: '_site',
+          dest: '_site',
+          src: ['*.html']
         }
       },
-*/
       connect: {
         dev: {
           options: {
@@ -61,6 +74,7 @@
           }
         }
       },
+
       less: {
         dist: {
           files: {
@@ -68,11 +82,13 @@
           }
         }
       },
+
       jekyll: {
         dev: {
           doctor: true
         }
       },
+
       jshint: {
         options: jshintrc,
         configuration: {
@@ -81,6 +97,7 @@
           }
         }
       },
+
       watch: {
         /*configs: {
           files: '<%= jshint.gruntfile.src %>',
@@ -102,17 +119,34 @@
     });
 
     // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-cdn');
     grunt.loadNpmTasks('grunt-usemin');
     grunt.loadNpmTasks('grunt-jekyll');
 
     // Default task.
     grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+
+    grunt.registerTask('build', [
+      'clean',
+      'jekyll',
+      'less',
+      'useminPrepare',
+      'concat',
+      'cssmin',
+      'uglify',
+      'usemin',
+      'cdn:dist',
+      'copy:dist'
+    ]);
 
     grunt.registerTask('dev', 'Set up a development environment', function() {
       grunt.option('force', true);
