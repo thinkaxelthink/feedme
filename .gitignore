@@ -3,5 +3,6 @@ node_modules/*
 .DS_Store
 .tmp/*
 dist/*
+_site/*
 index.txt
 params.json.bak

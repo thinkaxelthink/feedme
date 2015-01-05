@@ -3,6 +3,7 @@ url: 'http://thinkaxelthink.github.io/feedme'
 title: Shit Axel Eats
 author: Axel Esquite 
 exclude: [
+  'views',
   'index.txt',
   'js',
   'stylesheets',

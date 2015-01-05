@@ -25,17 +25,24 @@
           stripBanners: true,
           dest: "dist"
         },
-        html: ['_site/*.html']
+        html: ['views/_layouts/*.html']
       },
 
       usemin: {
-        html: ['_site/*.html'],
-        css: ['_site/css/*.css']
+        html: ['_layouts/default.html']
+        //css: ['_site/css/*.css']
       },
 
       clean: {
         tmp: '.tmp', 
-        build: ['dist']
+        build: [
+          '_site',
+          '_posts',
+          '_layouts',
+          '_includes',
+          'css',
+          'dist'
+        ]
       },
 
       copy: {
@@ -43,10 +50,20 @@
           files: [{
             expand: true,
             cwd: 'dist',
-            dest: '_site',
+            dest: '.',
             src: [
-              'js/**',
-              'css/**'
+              'assets/**'
+            ]
+          },
+          {
+            expand: true,
+            cwd: 'views',
+            dest: '.',
+            src: [
+              '_layouts/**',
+              '_posts/**',
+              '_includes/**',
+              'index.html'
             ]
           }]
         }
@@ -54,15 +71,16 @@
 
       cdn: {
         options: {
-          cdn: '<%= pkg.homepage %>',
+          cdn: '{{ site.url }}',
           flatten: true
         },
         dist: {
-          cwd: '_site',
-          dest: '_site',
+          cwd: '_layouts',
+          dest: '_layouts',
           src: ['*.html']
         }
       },
+
       connect: {
         dev: {
           options: {
@@ -78,7 +96,7 @@
       less: {
         dist: {
           files: {
-            '_site/stylesheets/app.css': 'less/app.less'
+            'css/app.css': 'less/app.less'
           }
         }
       },
@@ -137,15 +155,15 @@
 
     grunt.registerTask('build', [
       'clean',
-      'jekyll',
+//      'jekyll',
       'less',
       'useminPrepare',
       'concat',
       'cssmin',
       'uglify',
+      'copy:dist',
       'usemin',
-      'cdn:dist',
-      'copy:dist'
+      'cdn:dist'
     ]);
 
     grunt.registerTask('dev', 'Set up a development environment', function() {
