@@ -1,0 +1,19 @@
+port: 4000
+url: 'http://localhost:4000'
+title: Shit Axel Eats
+author: Axel Esquite 
+exclude: [
+  'views',
+  'index.txt',
+  'js',
+  'stylesheets',
+  'package.json',
+  'params.json.bak',
+  'bower_components',
+  'README.md',
+  'Gemfile.lock',
+  'Gemfile',
+  'Gruntfile.js',
+  'node_modules',
+  'less'
+]
