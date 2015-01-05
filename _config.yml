@@ -1,5 +1,18 @@
 port: 4000
-url: http://thinkaxelthink.github.io/feedme
+url: 'http://thinkaxelthink.github.io/feedme'
 title: Shit Axel Eats
 author: Axel Esquite 
-exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Gruntfile.js']
+exclude: [
+  'index.txt',
+  'js',
+  'stylesheets',
+  'package.json',
+  'params.json.bak',
+  'bower_components',
+  'README.md',
+  'Gemfile.lock',
+  'Gemfile',
+  'Gruntfile.js',
+  'node_modules',
+  'less'
+]
