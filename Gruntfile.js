@@ -103,7 +103,9 @@
 
       jekyll: {
         dev: {
-          doctor: true
+          options: {
+            config: '_config.dev.yml'
+          }
         }
       },
 
@@ -130,7 +132,7 @@
           tasks: ['less']
         },
         html: {
-          files: ['_includes/**', '_layouts/**', '_posts/**'],
+          files: ['views/**'],
           tasks: ['jekyll:dev', 'less']
         }
       }
@@ -155,7 +157,6 @@
 
     grunt.registerTask('build', [
       'clean',
-//      'jekyll',
       'less',
       'useminPrepare',
       'concat',
@@ -169,8 +170,8 @@
     grunt.registerTask('dev', 'Set up a development environment', function() {
       grunt.option('force', true);
       grunt.task.run([
+        'build',
         'jekyll',
-        'less',
         'connect:dev',
         'watch'
       ]);
