@@ -87,10 +87,6 @@
   position: relative;
 }
 #ingredients {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  z-index: 200;
   background: rgba(0, 0, 0, 0.8);
   color: #FFF;
 }
@@ -144,10 +140,31 @@
 ==================================================*/
 /*==========  Mobile First Method  ==========*/
 /* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .recipe-info-inner {
+    bottom: 50%;
+  }
+}
 /* Extra Small Devices, Phones */
 /* Small Devices, Tablets */
 /* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  #ingredients {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 200;
+  }
+}
 /* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  #ingredients {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 200;
+  }
+}
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
