@@ -132,7 +132,7 @@
           tasks: ['less']
         },
         html: {
-          files: ['_includes/**', '_layouts/**', '_posts/**'],
+          files: ['views/**'],
           tasks: ['jekyll:dev', 'less']
         }
       }
