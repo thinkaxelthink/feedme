@@ -1,7 +1,24 @@
+<div class="homepage-hero row">
+  <div class="recipe-image-container col-md-12">
+    <h2 class="recipe-step-title">{{site.posts[0].title}}</h2>
+    <a href="{{site.url}}{{site.posts[0].url}}" class="">
+      <img src="{{site.posts[0].images[0]}}" alt="{{site.posts[0].images[0]}}" class="img-responsive recipe-image">
+    </a>
+  </div>
+</div>
 <div class="row">
-  <div class="list-group">
-  {% for post in site.posts %}
-  <a href="{{site.url}}{{post.url}}" class="list-group-item">{{post.title}}</a>
-  {% endfor %}
+  <div class="col-md-12">
+    {% for post in site.posts offset:1 %}
+      {% if post.images %}
+      <div class="card col-md-3">
+        <div class="card-image-container">
+          <a href="{{site.url}}{{post.url}}" class="">
+            <img src="{{post.images[0]}}" alt="{{post.title}}" class="img-responsive">
+          </a>
+        </div>
+        <h3>{{post.title}}</h3>
+      </div>
+      {% endif %}
+    {% endfor %}
   </div>
 </div>
