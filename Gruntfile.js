@@ -46,6 +46,8 @@
       },
 
       copy: {
+        tmp: {
+        },
         dist: {
           files: [{
             expand: true,
@@ -65,6 +67,12 @@
               '_includes/**',
               'index.html'
             ]
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/bootstrap/dist',
+            dest: 'assets',
+            src: ['fonts/**']
           }]
         }
       },
@@ -125,15 +133,15 @@
         },*/
         js: {
           files: 'js/**',
-          tasks: ['jekyll:dev', 'less']
+          tasks: ['build']
         },
         css: {
           files: 'less/**',
-          tasks: ['less']
+          tasks: ['build']
         },
         html: {
           files: ['views/**'],
-          tasks: ['jekyll:dev', 'less']
+          tasks: ['build']
         }
       }
     });
