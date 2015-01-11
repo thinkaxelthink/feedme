@@ -89,7 +89,7 @@ steps:
 
   - 1:
     title: Start the broth
-    body: Put the beans in a large heavy pot and cover them by about an inch with cold water. Bring the water to a boil over high heat. Let the beans boil for one minute, then remove them from the heat and cover the pot. Set aside for one hour. Drain the beans and return them to the pot. Add the chicken stock, and if the beans aren't quite covered in liquid, add a little bit of water. Add the shallots, garlic, celery, carrot, scallions, thyme, rosemary, Parmesan rind, olive oil and a teaspoon of salt. Bring to a boil, then lower the heat until the beans are just simmering. Cook uncovered for about 40 minutes, until the beans are almost tender. Add the tomatoes and cook gently for another 10 to 20 minutes.
+    body: Drain the beans and return them to the pot. Add the chicken stock, and if the beans aren't quite covered in liquid, add a little bit of water. Add the shallots, garlic, celery, carrot, scallions, thyme, rosemary, Parmesan rind, olive oil and a teaspoon of salt. Bring to a boil, then lower the heat until the beans are just simmering. Cook uncovered for about 40 minutes, until the beans are almost tender. Add the tomatoes and cook gently for another 10 to 20 minutes.
     image: https://themountainkitchen.files.wordpress.com/2013/12/adding-rind.jpg
 
   - 2:
